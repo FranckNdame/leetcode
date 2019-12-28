@@ -1,3 +1,4 @@
+# Time Complexity: O(n) || Space Complexity: O(1)
 def isPalindrome(string):
 	lhs, rhs = 0, len(string) - 1
 	

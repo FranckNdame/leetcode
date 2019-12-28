@@ -12,7 +12,7 @@ def threeNumberSum(array, targetSum):
  	return triplets
 
 
-# Solution 1: Using pointers
+# Solution 2: Using pointers
 # Time Complexity: O(n) || Space Complexity: (n) 
 def threeNumberSum(array, targetSum):
 	array.sort()
