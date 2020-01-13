@@ -1,8 +1,6 @@
 def strStr(self, haystack: str, needle: str) -> int:
-    if not needle:
-        return 0
-    if haystack == needle:
-        return 0
+    if not needle:return 0
+    if haystack == needle: return 0
 
     lenH = len(haystack)
     lenN = len(needle)
