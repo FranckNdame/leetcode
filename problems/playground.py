@@ -1,9 +1,12 @@
-import heapq
+def isSimilar(wordOne, wordTwo):
+    wordOne, wordTwo = list(wordOne), list(wordTwo)
+    for i in range(len(wordTwo)):
+        for j in range(i, len(wordTwo)):
+            wordTwo[i], wordTwo[j] = wordTwo[j], wordTwo[i]
+            if wordOne == wordTwo:
+                return True
+            wordTwo[i], wordTwo[j] = wordTwo[j], wordTwo[i]
+    return False
 
-minHeap = []
-heapq.heappush(minHeap, (5, 8))
-heapq.heappush(minHeap, (1, 7))
-heapq.heappush(minHeap, (4, 2))
-heapq.heappush(minHeap, (0, 7))
-heapq.heappush(minHeap, (2, 1))
-print(minHeap)
+
+print(isSimilar("arts", "tars"))
