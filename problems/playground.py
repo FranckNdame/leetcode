@@ -9,4 +9,6 @@ def isSimilar(wordOne, wordTwo):
     return False
 
 
-print(isSimilar("arts", "tars"))
+# print(isSimilar("arts", "tars"))
+
+print(553 % 500)
