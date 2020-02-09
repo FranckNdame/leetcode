@@ -1,1 +1,1 @@
-print("NELSON")
+print(1 << 2)
