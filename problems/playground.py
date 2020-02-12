@@ -6,12 +6,4 @@ def reverseBits(n):
     return res
 
 
-print(0 & 1)
-
-"""
-
-    0101 AND 0001
-
-    0001
-
-"""
+print(4 % 4)
