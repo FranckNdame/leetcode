@@ -1,9 +1,11 @@
-import heapq
-heap = []
-heapq.heappush(heap, (1, "lzve"))
-heapq.heappush(heap, (1, "love"))
-heapq.heappush(heap, (1, "i"))
+def rev(string):
+    return rec(string[-1]+string[:-2])
 
-print(heapq.heappop(heap))
-print(heapq.heappop(heap))
-print(heapq.heappop(heap))
+
+def rec(string):
+    if not string:
+        return ""
+    return rec(string[-1]+string[:-2])
+
+
+print(rev("franck"))
