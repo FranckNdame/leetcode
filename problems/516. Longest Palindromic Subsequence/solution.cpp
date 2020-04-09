@@ -5,29 +5,19 @@ public:
     // Approach One (Top-Down)
     int longestPalindromeSubseq(string s)
     {
-        unordered_map<string, int> cache;
-        return longestPalindromeSubseq(s, 0, s.size() - 1, cache);
+        int n = s.size();
+        vector<vector<int>> mem(n, vector<int>(n));
+        return longestPalindromeSubseq(0, n - 1, s, mem);
     }
-
-    int longestPalindromeSubseq(string &s, int start, int end, unordered_map<string, int> &cache)
+    int longestPalindromeSubseq(int l, int r, string &s, vector<vector<int>> &mem)
     {
-        if (start == end)
+        if (l == r)
             return 1;
-        if (start > end)
+        if (l > r)
             return 0;
-        string key = to_string(start) + "." + to_string(end);
-        if (cache.find(key) == cache.end())
-        {
-            if (s[start] == s[end])
-            {
-                cache[key] = 2 + longestPalindromeSubseq(s, start + 1, end - 1, cache);
-            }
-            else
-            {
-                cache[key] = max(longestPalindromeSubseq(s, start + 1, end, cache), longestPalindromeSubseq(s, start, end - 1, cache));
-            }
-        }
-        return cache[key];
+        if (mem[l][r])
+            return mem[l][r];
+        return mem[l][r] = s[l] == s[r] ? 2 + longestPalindromeSubseq(l + 1, r - 1, s, mem) : max(longestPalindromeSubseq(l + 1, r, s, mem), longestPalindromeSubseq(l, r - 1, s, mem));
     }
 
     // Approach Two (Bottom-Up)
@@ -55,5 +45,20 @@ public:
         }
 
         return grid[0][N - 1];
+    }
+
+    // Approach 3
+    int longestPalindromeSubseq(string s)
+    {
+        int n = s.size();
+        vector<int> v0(n), v1(n, 1), v(n), *i_2 = &v0, *i_1 = &v1, *i_ = &v;
+        for (int i = 2; i <= n; i++)
+        {                                       //length
+            for (int j = 0; j < n - i + 1; j++) //start index
+                i_->at(j) = s[j] == s[i + j - 1] ? 2 + i_2->at(j + 1) : max(i_1->at(j), i_1->at(j + 1));
+            swap(i_1, i_2);
+            swap(i_1, i_); //rotate i_2, i_1, i_
+        }
+        return i_1->at(0);
     }
 };
